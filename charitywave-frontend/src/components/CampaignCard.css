@@ -1,0 +1,119 @@
+.campaign-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+.campaign-card-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.campaign-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.campaign-card:hover .campaign-card-image img {
+  transform: scale(1.08);
+}
+
+.campaign-card-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+}
+
+.campaign-card-category {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid;
+  backdrop-filter: blur(10px);
+}
+
+.campaign-card-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.campaign-card-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--cw-text);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.campaign-card-desc {
+  font-size: 0.875rem;
+  color: var(--cw-text-secondary);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.campaign-card-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.campaign-card-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.stat-raised {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--cw-primary);
+}
+
+.stat-label {
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--cw-text-secondary);
+}
+
+.stat-goal {
+  font-size: 0.8rem;
+  color: var(--cw-text-muted);
+}
+
+.campaign-card-meta {
+  display: flex;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--cw-border);
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--cw-text-muted);
+}
