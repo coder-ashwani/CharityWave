@@ -1,6 +1,6 @@
 const express = require('express');
 const multer = require('multer');
-const { v4: uuidv4 } = require('uuid');
+const { randomUUID } = require('crypto');
 const supabase = require('../data/supabase');
 const authMiddleware = require('../middleware/auth');
 
@@ -145,7 +145,7 @@ router.post('/', authMiddleware, upload.single('imageFile'), async (req, res) =>
     // Handle file upload to Supabase Storage if an file was attached
     if (req.file) {
       const fileExt = req.file.originalname.split('.').pop();
-      const fileName = `${uuidv4()}.${fileExt}`;
+      const fileName = `${randomUUID()}.${fileExt}`;
       const filePath = `${req.user.id}/${fileName}`;
 
       const { data: uploadData, error: uploadError } = await supabase.storage
