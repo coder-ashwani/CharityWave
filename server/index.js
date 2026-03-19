@@ -31,3 +31,5 @@ app.get('/api/health', (req, res) => {
 app.listen(PORT, () => {
   console.log(`🌊 CharityWave Server running on port ${PORT}`);
 });
+
+module.exports = app;
