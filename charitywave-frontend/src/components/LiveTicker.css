@@ -1,0 +1,117 @@
+.live-ticker-bar {
+  background: rgba(14, 165, 233, 0.05);
+  border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 8px 0;
+  position: relative;
+  z-index: 100;
+  overflow: hidden;
+}
+
+.ticker-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  font-size: 0.85rem;
+}
+
+.ticker-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cw-primary);
+  color: white;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.zap-icon {
+  animation: pulse 1s infinite;
+}
+
+.ticker-message {
+  color: var(--cw-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 800px;
+}
+
+.ticker-user {
+  font-weight: 800;
+  color: var(--cw-text);
+  margin-right: 4px;
+}
+
+.ticker-amount {
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--cw-primary), var(--cw-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  padding: 0 4px;
+}
+
+.ticker-campaign {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--cw-primary-light);
+  margin: 0 4px;
+}
+
+.ticker-time {
+  margin-left: 12px;
+  color: var(--cw-text-muted);
+  font-size: 0.75rem;
+}
+
+.ticker-heart {
+  color: #ef4444;
+  animation: heartBeat 1.5s infinite;
+  flex-shrink: 0;
+}
+
+/* Animations */
+@keyframes slideUpDown {
+  0% { transform: translateY(20px); opacity: 0; }
+  10% { transform: translateY(0); opacity: 1; }
+  90% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-20px); opacity: 0; }
+}
+
+.animate-slideUpDown {
+  animation: slideUpDown 5s infinite ease-in-out;
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  10% { transform: scale(1.2); }
+  20% { transform: scale(1); }
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+@media (max-width: 768px) {
+  .ticker-message {
+    max-width: 250px;
+    font-size: 0.75rem;
+  }
+  
+  .ticker-badge {
+    padding: 2px 6px;
+    font-size: 0.6rem;
+  }
+
+  .ticker-content {
+    gap: 12px;
+  }
+}

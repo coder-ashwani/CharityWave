@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiArrowRight, FiHeart, FiUsers, FiTarget, FiTrendingUp, FiSearch } from 'react-icons/fi';
 import api from '../api';
 import CampaignCard from '../components/CampaignCard';
+import LiveTicker from '../components/LiveTicker';
 import './Home.css';
 
 export default function Home() {
@@ -50,6 +51,7 @@ export default function Home() {
 
   return (
     <div className="home-page" id="home-page">
+      <LiveTicker />
       {/* Hero Section */}
       <section className="hero" id="hero-section">
         <div className="hero-bg">
