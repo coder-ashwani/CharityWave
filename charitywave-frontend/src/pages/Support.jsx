@@ -1,11 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { FiHelpCircle, FiFileText, FiPhone, FiInfo } from 'react-icons/fi';
+import { FiHelpCircle, FiFileText, FiPhone, FiInfo, FiCheckCircle } from 'react-icons/fi';
+import api from '../api';
 import './Support.css';
 
 export default function Support() {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState('how-it-works');
+
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const path = location.pathname.split('/').pop();
@@ -13,6 +18,25 @@ export default function Support() {
       setActiveTab(path);
     }
   }, [location]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await api.post('/support/contact', formData);
+      setSubmitted(true);
+      setFormData({ name: '', email: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err) {
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
   const tabs = [
     { id: 'how-it-works', title: 'How it Works', icon: <FiInfo /> },
@@ -91,22 +115,59 @@ export default function Support() {
           {activeTab === 'contact' && (
             <div className="content-section">
               <h2>Get in <span className="gradient-text">Touch</span></h2>
-              <p>Have questions? Our team is here to help you ride the wave successfully.</p>
-              <form className="contact-form" onSubmit={(e) => e.preventDefault()}>
-                <div className="form-group">
-                  <label>Full Name</label>
-                  <input type="text" className="input-field" placeholder="Your Name" />
+              {submitted ? (
+                <div className="success-message animate-fadeIn">
+                  <FiCheckCircle size={48} color="#10b981" />
+                  <h3>Message Sent!</h3>
+                  <p>Thank you for reaching out. We'll get back to you soon.</p>
+                  <button className="btn btn-secondary" onClick={() => setSubmitted(false)}>Send Another</button>
                 </div>
-                <div className="form-group">
-                  <label>Email Address</label>
-                  <input type="email" className="input-field" placeholder="your@email.com" />
-                </div>
-                <div className="form-group">
-                  <label>Message</label>
-                  <textarea className="input-field" rows="4" placeholder="How can we help?"></textarea>
-                </div>
-                <button type="submit" className="btn btn-primary">Send Message</button>
-              </form>
+              ) : (
+                <>
+                  <p>Have questions? Our team is here to help you ride the wave successfully.</p>
+                  <form className="contact-form" onSubmit={handleSubmit}>
+                    <div className="form-group">
+                      <label>Full Name</label>
+                      <input 
+                        type="text" 
+                        name="name"
+                        className="input-field" 
+                        placeholder="Your Name" 
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Email Address</label>
+                      <input 
+                        type="email" 
+                        name="email"
+                        className="input-field" 
+                        placeholder="your@email.com" 
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Message</label>
+                      <textarea 
+                        name="message"
+                        className="input-field" 
+                        rows="4" 
+                        placeholder="How can we help?"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                      ></textarea>
+                    </div>
+                    <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
+                      {isSubmitting ? 'Sending...' : 'Send Message'}
+                    </button>
+                  </form>
+                </>
+              )}
             </div>
           )}
 
