@@ -121,4 +121,37 @@ router.get('/my', authMiddleware, async (req, res) => {
   }
 });
 
+// Get recent public donations for ticker
+router.get('/recent', async (req, res) => {
+  try {
+    const { data: donations, error } = await supabase
+      .from('donations')
+      .select(`
+        id,
+        amount,
+        anonymous,
+        created_at,
+        users (name),
+        campaigns (title)
+      `)
+      .order('created_at', { ascending: false })
+      .limit(10);
+
+    if (error) throw error;
+
+    const mapped = donations.map(d => ({
+      id: d.id,
+      amount: d.amount,
+      donorName: d.anonymous ? 'Anonymous' : (d.users?.name || 'A Kind Donor'),
+      campaignTitle: d.campaigns?.title || 'a great cause',
+      createdAt: d.created_at
+    }));
+
+    res.json(mapped);
+  } catch (err) {
+    console.error('Recent Donations Error:', err);
+    res.status(500).json({ error: 'Failed to fetch recent activity.' });
+  }
+});
+
 module.exports = router;
