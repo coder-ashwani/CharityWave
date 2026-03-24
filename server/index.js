@@ -6,11 +6,12 @@ const campaignRoutes = require('./routes/campaigns');
 const donationRoutes = require('./routes/donations');
 const categoryRoutes = require('./routes/categories');
 const statsRoutes = require('./routes/stats');
+const supportRoutes = require('./routes/support');
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 
 // Middleware
 app.use(cors());
@@ -22,6 +23,7 @@ app.use('/api/campaigns', campaignRoutes);
 app.use('/api/donations', donationRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/stats', statsRoutes);
+app.use('/api/support', supportRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
