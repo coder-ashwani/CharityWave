@@ -54,18 +54,18 @@ export default function Support() {
           {activeTab === 'how-it-works' && (
             <div className="content-section">
               <h2>🌊 How <span className="gradient-text">CharityWave</span> Works</h2>
-              <div className="steps-grid">
-                <div className="step-card">
+              <div className="support-steps-grid">
+                <div className="support-step-card">
                   <div className="step-number">01</div>
                   <h3>Create Account</h3>
                   <p>Join as a Donor or Requester. It takes less than 2 minutes to get started.</p>
                 </div>
-                <div className="step-card">
+                <div className="support-step-card">
                   <div className="step-number">02</div>
                   <h3>Share Story</h3>
                   <p>Tell the world why your cause matters with images, videos, and compelling stories.</p>
                 </div>
-                <div className="step-card">
+                <div className="support-step-card">
                   <div className="step-number">03</div>
                   <h3>Receive Impact</h3>
                   <p>Securely collect donations and keep your supporters updated on the progress.</p>

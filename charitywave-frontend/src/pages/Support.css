@@ -71,14 +71,14 @@
 }
 
 /* How it Works Styles */
-.steps-grid {
+.support-steps-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 3rem;
 }
 
-.step-card {
+.support-step-card {
   text-align: center;
   padding: 2.5rem 1.5rem;
   background: rgba(255, 255, 255, 0.03);
@@ -87,7 +87,7 @@
   transition: transform 0.3s ease;
 }
 
-.step-card:hover {
+.support-step-card:hover {
   transform: translateY(-5px);
   background: rgba(255, 255, 255, 0.05);
 }
@@ -100,12 +100,12 @@
   margin-bottom: -1rem;
 }
 
-.step-card h3 {
+.support-step-card h3 {
   margin-bottom: 1rem;
   font-size: 1.25rem;
 }
 
-.step-card p {
+.support-step-card p {
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.6;
