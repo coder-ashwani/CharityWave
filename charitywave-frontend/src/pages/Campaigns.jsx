@@ -15,8 +15,19 @@ export default function Campaigns() {
   const [sort, setSort] = useState('newest');
 
   useEffect(() => {
-    api.get('/categories').then(res => setCategories(res.data)).catch(console.error);
-  }, []);
+    api.get('/categories').then(res => {
+      setCategories(res.data);
+      
+      // Handle the categoryName from search params
+      const catName = searchParams.get('categoryName');
+      if (catName) {
+        const found = res.data.find(c => c.name.toLowerCase() === catName.toLowerCase());
+        if (found) {
+          setSelectedCategory(found.id);
+        }
+      }
+    }).catch(console.error);
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchCampaigns = async () => {

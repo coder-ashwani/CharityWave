@@ -30,18 +30,18 @@ export default function Footer() {
 
           <div className="footer-column">
             <h4 className="footer-heading">Categories</h4>
-            <Link to="/campaigns" className="footer-link">📚 Education</Link>
-            <Link to="/campaigns" className="footer-link">🏥 Healthcare</Link>
-            <Link to="/campaigns" className="footer-link">⚽ Sports</Link>
-            <Link to="/campaigns" className="footer-link">🌍 Environment</Link>
+            <Link to="/campaigns?categoryName=Education" className="footer-link">📚 Education</Link>
+            <Link to="/campaigns?categoryName=Healthcare" className="footer-link">🏥 Healthcare</Link>
+            <Link to="/campaigns?categoryName=Sports" className="footer-link">⚽ Sports</Link>
+            <Link to="/campaigns?categoryName=Environment" className="footer-link">🌍 Environment</Link>
           </div>
 
           <div className="footer-column">
             <h4 className="footer-heading">Support</h4>
-            <a href="#" className="footer-link">How it Works</a>
-            <a href="#" className="footer-link">FAQs</a>
-            <a href="#" className="footer-link">Contact Us</a>
-            <a href="#" className="footer-link">Privacy Policy</a>
+            <Link to="/support/how-it-works" className="footer-link">How it Works</Link>
+            <Link to="/support/faqs" className="footer-link">FAQs</Link>
+            <Link to="/support/contact" className="footer-link">Contact Us</Link>
+            <Link to="/support/privacy" className="footer-link">Privacy Policy</Link>
           </div>
         </div>
 
